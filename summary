@@ -30,7 +30,7 @@ for file in os.listdir(filedir):
 
     root=tree.getroot()
 
-    tags=['brief_title','brief_summary','detailed_description','condition','keyword']
+    tags=['brief_title','brief_summary','detailed_description','condition','keyword', 'criteria', 'city']
 
     tags_block = ['brief_summary','detailed_description']
 
@@ -57,6 +57,13 @@ for file in os.listdir(filedir):
                 if el.tag=='phase':
 
                     summary=summary + 'Phase:'+ re.sub(r'\s+',' ',el.text)+ '.' + '\n'
+                if el.tag=='criteria':
+                     summary = summary +' Criteria:' + re.sub(r'\s+',' ',el.find('textblock').text)+ '\n'
+                 if el.tag=='city':
+
+                    summary=summary + 'Location:'+ re.sub(r'\s+',' ',el.text)+ '.' + '\n'
+
+                
                     
 
     print(summary)         
